@@ -1,5 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require('cors');
+const http = require('http');
+const { Server } = require('socket.io');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
@@ -26,61 +29,24 @@ const server = http.createServer(app);
 const allowedOrigins = [
   process.env.FRONTEND_URL,
   "http://localhost:5173",
-  "https://nexkind.vercel.app",
-  "https://nexkind.vercel.app/"
+  "https://nexkind.vercel.app"
 ].filter(Boolean);
 
-const io = new Server(server, {
-  cors: {
-    origin: allowedOrigins,
-    methods: ["GET", "POST"],
-    credentials: true,
+// CORS configuration
+app.use(cors({
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
   },
-});
-
-io.on("connection", (socket) => {
-  socket.on("join_room", (data) => {
-    socket.join(data);
-  });
-
-  socket.on("send_message", (data) => {
-    socket.to(data.room).emit("receive_message", data);
-  });
-});
-
-app.use((req, res, next) => {
-  req.io = io;
-  next();
-});
-
-// Manual CORS middleware (kept from previous version style)
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  if (!origin) return next();
-
-  const isAllowed =
-    allowedOrigins.includes(origin) || process.env.NODE_ENV !== "production";
-
-  if (!isAllowed) return next();
-
-  res.setHeader("Vary", "Origin");
-  res.setHeader("Access-Control-Allow-Origin", origin);
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(204);
-  }
-
-  next();
-});
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept", "Origin"]
+}));
 
 app.use(express.json());
 
@@ -101,6 +67,6 @@ app.use('/api/student', studentRoutes);
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
 });
