@@ -22,7 +22,66 @@ connectDB().then(() => {
 
 const app = express();
 
-app.use(cors());
+const server = http.createServer(app);
+
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  "http://localhost:5173",
+  "https://nexkind.vercel.app",
+].filter(Boolean);
+
+const io = new Server(server, {
+  cors: {
+    origin: allowedOrigins,
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
+});
+
+io.on("connection", (socket) => {
+  socket.on("join_room", (data) => {
+    socket.join(data);
+  });
+
+  socket.on("send_message", (data) => {
+    socket.to(data.room).emit("receive_message", data);
+  });
+});
+
+app.use((req, res, next) => {
+  req.io = io;
+  next();
+});
+
+// Manual CORS middleware (kept from previous version style)
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (!origin) return next();
+
+  const isAllowed =
+    allowedOrigins.includes(origin) || process.env.NODE_ENV !== "production";
+
+  if (!isAllowed) return next();
+
+  res.setHeader("Vary", "Origin");
+  res.setHeader("Access-Control-Allow-Origin", origin);
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+
+  next();
+});
+
 app.use(express.json());
 
 app.get('/', (req, res) => {
