@@ -29,7 +29,8 @@ const server = http.createServer(app);
 const allowedOrigins = [
   process.env.FRONTEND_URL,
   "http://localhost:5173",
-  "https://nexkind.vercel.app"
+  "https://nexkind.vercel.app",
+  "https://nexkind.vercel.app/"
 ].filter(Boolean);
 
 // CORS configuration
