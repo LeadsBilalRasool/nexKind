@@ -35,7 +35,7 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="text-4xl md:text-6xl font-bold mb-6"
           >
-            About EduRise
+            About NexKind
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}

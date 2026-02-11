@@ -184,7 +184,7 @@ const StudentDashboard = () => {
 
       <main className="flex-1 flex flex-col min-w-0 bg-slate-50/50">
         <header className="h-20 bg-white/80 backdrop-blur-md border-b border-slate-200/60 flex items-center justify-between px-8 sticky top-0 z-30">
-          <div className="md:hidden font-bold text-primary text-xl">EduRise</div>
+          <div className="md:hidden font-bold text-primary text-xl">NexKind</div>
 
           <div className="hidden md:block relative w-96">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />

@@ -15,7 +15,7 @@ const PrivacyPolicy = () => {
 
           <div className="prose prose-lg prose-slate max-w-none">
             <p>
-              At EduRise, accessible from edurise.org, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by EduRise and how we use it.
+              At NexKind, accessible from NexKind.org, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by NexKind and how we use it.
             </p>
 
             <h3>1. Information We Collect</h3>
@@ -44,17 +44,17 @@ const PrivacyPolicy = () => {
 
             <h3>3. Log Files</h3>
             <p>
-              EduRise follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks.
+              NexKind follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks.
             </p>
 
             <h3>4. Cookies and Web Beacons</h3>
             <p>
-              Like any other website, EduRise uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.
+              Like any other website, NexKind uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.
             </p>
 
             <h3>5. Third Party Privacy Policies</h3>
             <p>
-              EduRise's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options.
+              NexKind's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options.
             </p>
 
             <div className="bg-blue-50 border-l-4 border-blue-500 p-6 my-8 rounded-r-xl">
@@ -69,7 +69,7 @@ const PrivacyPolicy = () => {
               If you have any questions about this Privacy Policy, You can contact us:
             </p>
             <ul>
-              <li>By email: privacy@edurise.org</li>
+              <li>By email: privacy@NexKind.org</li>
               <li>By visiting this page on our website: /contact</li>
             </ul>
           </div>

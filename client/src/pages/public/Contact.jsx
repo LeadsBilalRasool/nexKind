@@ -123,7 +123,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg mb-1">Email</h3>
-                    <p className="text-blue-100/80">info@edurise.org</p>
+                    <p className="text-blue-100/80">info@NexKind.org</p>
                   </div>
                 </div>
 

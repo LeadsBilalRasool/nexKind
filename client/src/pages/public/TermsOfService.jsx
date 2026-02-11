@@ -15,7 +15,7 @@ const TermsOfService = () => {
 
           <div className="prose prose-lg prose-slate max-w-none">
             <p>
-              Please read these Terms of Service ("Terms", "Terms of Service") carefully before using the EduRise website (the "Service") operated by EduRise NGO ("us", "we", or "our").
+              Please read these Terms of Service ("Terms", "Terms of Service") carefully before using the NexKind website (the "Service") operated by NexKind NGO ("us", "we", or "our").
             </p>
             <p>
               Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users, and others who access or use the Service.
@@ -28,15 +28,15 @@ const TermsOfService = () => {
 
             <h3>2. Intellectual Property</h3>
             <p>
-              The Service and its original content, features, and functionality are and will remain the exclusive property of EduRise and its licensors. The Service is protected by copyright, trademark, and other laws of both the Pakistan and foreign countries. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of EduRise.
+              The Service and its original content, features, and functionality are and will remain the exclusive property of NexKind and its licensors. The Service is protected by copyright, trademark, and other laws of both the Pakistan and foreign countries. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of NexKind.
             </p>
 
             <h3>3. Links To Other Web Sites</h3>
             <p>
-              Our Service may contain links to third-party web sites or services that are not owned or controlled by EduRise.
+              Our Service may contain links to third-party web sites or services that are not owned or controlled by NexKind.
             </p>
             <p>
-              EduRise has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that EduRise shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services.
+              NexKind has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that NexKind shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services.
             </p>
 
             <h3>4. Termination</h3>

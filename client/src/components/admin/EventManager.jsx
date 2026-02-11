@@ -244,7 +244,7 @@ const EventManager = () => {
                       </button>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
                         <FormInput label="Name" value={speaker.name} onChange={e => handleSpeakerChange(index, 'name', e.target.value)} placeholder="Speaker Name" />
-                        <FormInput label="Role" value={speaker.role} onChange={e => handleSpeakerChange(index, 'role', e.target.value)} placeholder="e.g. CEO, EduRise" />
+                        <FormInput label="Role" value={speaker.role} onChange={e => handleSpeakerChange(index, 'role', e.target.value)} placeholder="e.g. CEO, NexKind" />
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <FormInput label="Institution (Optional)" value={speaker.institution} onChange={e => handleSpeakerChange(index, 'institution', e.target.value)} placeholder="e.g. Tech University" />

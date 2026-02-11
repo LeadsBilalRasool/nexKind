@@ -179,7 +179,7 @@ const ChatbotWidget = () => {
           </form>
           <div className="text-center mt-2">
             <span className="text-[10px] text-slate-400 flex items-center justify-center gap-1">
-              Powered by <span className="font-bold text-primary">EduRise AI</span>
+              Powered by <span className="font-bold text-primary">NexKind AI</span>
             </span>
           </div>
         </div>

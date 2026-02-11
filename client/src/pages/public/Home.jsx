@@ -237,7 +237,7 @@ const Home = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-4xl font-bold mb-6">Why Students Choose EduRise?</h2>
+              <h2 className="text-4xl font-bold mb-6">Why Students Choose NexKind?</h2>
               <p className="text-slate-300 text-lg mb-8 leading-relaxed">
                 We go beyond traditional learning. Our holistic approach ensures you not only gain knowledge but also the confidence and opportunities to succeed.
               </p>
@@ -296,7 +296,7 @@ const Home = () => {
             className="text-center mb-12"
           >
             <h2 className="section-title">Success Stories</h2>
-            <p className="section-subtitle">Hear from students who transformed their lives with EduRise.</p>
+            <p className="section-subtitle">Hear from students who transformed their lives with NexKind.</p>
           </motion.div>
 
           <motion.div
@@ -307,7 +307,7 @@ const Home = () => {
             className="grid md:grid-cols-3 gap-8 mt-12"
           >
             {[
-              { name: "Alex Johnson", role: "Software Engineer at Google", text: "EduRise gave me the roadmap I needed. The mentorship was invaluable, and the scholarship helped me focus on my studies.", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
+              { name: "Alex Johnson", role: "Software Engineer at Google", text: "NexKind gave me the roadmap I needed. The mentorship was invaluable, and the scholarship helped me focus on my studies.", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
               { name: "Maria Garcia", role: "Data Analyst", text: "I never thought I could switch careers without a degree. The certification program here is recognized by employers and got me my first job.", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
               { name: "David Chen", role: "Digital Marketer", text: "The community support is amazing. Whenever I was stuck, there was always someone to help. Highly recommended!", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" }
             ].map((story, i) => (

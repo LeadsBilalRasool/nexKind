@@ -34,7 +34,7 @@ const Register = ({ role = 'student' }) => {
       <div className="glass max-w-md w-full space-y-8 p-10 rounded-2xl shadow-xl">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-primary">{role === 'teacher' ? 'Teacher' : 'Student'} Registration</h1>
-          <p className="mt-2 text-sm text-slate-500">Create your account to join EduRise.</p>
+          <p className="mt-2 text-sm text-slate-500">Create your account to join NexKind.</p>
         </div>
 
         <form className="mt-8 space-y-6" onSubmit={handleRegister}>

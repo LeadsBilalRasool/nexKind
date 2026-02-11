@@ -104,7 +104,7 @@ const MessageManager = () => {
               <button onClick={() => setIsModalOpen(false)} className="px-4 py-2 text-slate-600 hover:text-slate-800 font-medium">Close</button>
               <button
                 onClick={() => {
-                  window.location.href = `mailto:${currentMessage.email}?subject=Re: Inquiry via EduRise&body=Dear ${currentMessage.name},\n\nThank you for contacting us.\n\n...`;
+                  window.location.href = `mailto:${currentMessage.email}?subject=Re: Inquiry via NexKind&body=Dear ${currentMessage.name},\n\nThank you for contacting us.\n\n...`;
                 }}
                 className="bg-primary text-white py-2 px-4 rounded-lg hover:bg-primary-dark transition-colors"
               >

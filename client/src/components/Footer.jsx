@@ -58,14 +58,14 @@ const Footer = () => {
             </li>
             <li className="flex items-center gap-3">
               <Mail size={20} className="text-secondary shrink-0" />
-              <span>info@edurise.org</span>
+              <span>info@NexKind.org</span>
             </li>
           </ul>
         </div>
       </div>
       <div className="border-t border-white/10 py-6 text-center text-sm">
         <div className="container-custom">
-          <p>&copy; {new Date().getFullYear()} EduRise NGO. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} NexKind NGO. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 const FAQ = () => {
   const faqs = [
     {
-      question: "What is EduRise and who is it for?",
-      answer: "EduRise is a non-profit organization dedicated to providing free education, scholarships, and career opportunities to students worldwide. Our platform serves students looking for learning resources, job seekers aiming for their first role, and donors who wish to support education."
+      question: "What is NexKind and who is it for?",
+      answer: "NexKind is a non-profit organization dedicated to providing free education, scholarships, and career opportunities to students worldwide. Our platform serves students looking for learning resources, job seekers aiming for their first role, and donors who wish to support education."
     },
     {
       question: "Are the courses really free?",
@@ -17,8 +17,8 @@ const FAQ = () => {
       answer: "To apply for a scholarship, navigate to the 'Scholarships' page, browse the available opportunities, and click 'View Details' on a scholarship that matches your profile. From there, you can see the requirements and click 'Apply Now' to submit your application."
     },
     {
-      question: "Can I post a job on EduRise?",
-      answer: "Currently, job postings are managed by our admin team to ensure quality and relevance. If you are an employer wishing to hire our talent, please contact us at partnerships@edurise.org."
+      question: "Can I post a job on NexKind?",
+      answer: "Currently, job postings are managed by our admin team to ensure quality and relevance. If you are an employer wishing to hire our talent, please contact us at partnerships@NexKind.org."
     },
     {
       question: "How can I donate to support the cause?",

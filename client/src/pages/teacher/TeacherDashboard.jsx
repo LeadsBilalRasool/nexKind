@@ -20,7 +20,7 @@ const TeacherDashboard = () => {
         <div className="h-20 flex items-center px-6 border-b border-slate-100">
           <Link to="/" className="flex items-center gap-2 text-xl font-bold text-primary">
             <BookOpen className="w-6 h-6 text-secondary" />
-            <span>EduRise</span>
+            <span>NexKind</span>
           </Link>
         </div>
 
@@ -47,7 +47,7 @@ const TeacherDashboard = () => {
       {/* Main Content */}
       <main className="flex-1 flex flex-col min-w-0">
         <header className="h-20 bg-white/80 backdrop-blur border-b border-slate-200 flex items-center justify-between px-8 sticky top-0 z-30">
-          <div className="md:hidden font-bold text-primary">EduRise</div>
+          <div className="md:hidden font-bold text-primary">NexKind</div>
           <div className="flex items-center gap-6 ml-auto">
             <button className="text-slate-400 hover:text-primary transition-colors"><Bell size={20} /></button>
             <div className="w-10 h-10 bg-secondary text-primary rounded-full flex items-center justify-center font-bold shadow-md">T</div>
