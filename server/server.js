@@ -14,6 +14,7 @@ const jobRoutes = require('./routes/jobRoutes');
 const messageRoutes = require('./routes/messageRoutes');
 const donationRoutes = require('./routes/donationRoutes');
 const studentRoutes = require('./routes/studentRoutes');
+const chatRoutes = require('./routes/chatRoutes');
 const seedData = require('./utils/seeder');
 
 dotenv.config();
@@ -65,6 +66,7 @@ app.use('/api/jobs', jobRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/donations', donationRoutes);
 app.use('/api/student', studentRoutes);
+app.use('/api/chat', chatRoutes);
 
 const PORT = process.env.PORT || 5000;
 

@@ -1,9 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
-import { X, Send, User, Minimize2, Maximize2, Paperclip, MessageSquare } from 'lucide-react';
+import { X, Send, User, Minimize2, Maximize2, Paperclip, MessageSquare, Copy, Check } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const ChatbotWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedId, setCopiedId] = useState(null);
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([
     {
@@ -23,28 +27,69 @@ const ChatbotWidget = () => {
     scrollToBottom();
   }, [messages, isOpen]);
 
-  const handleSendMessage = (e) => {
+  const handleCopy = (id, text) => {
+    navigator.clipboard.writeText(text);
+    setCopiedId(id);
+    setTimeout(() => {
+      setCopiedId(null);
+    }, 2000);
+  };
+
+  const handleSendMessage = async (e) => {
     e.preventDefault();
     if (message.trim()) {
+      const userText = message;
       const messageData = {
-        text: message,
+        text: userText,
         sender: "user",
         timestamp: new Date().toISOString(),
+        id: Date.now()
       };
 
-      setMessages((prev) => [...prev, { ...messageData, id: Date.now() }]);
+      const updatedMessages = [...messages, messageData];
+      setMessages(updatedMessages);
       setMessage("");
+      setIsLoading(true);
 
-      // Simulate dummy response
-      setTimeout(() => {
-        const dummyResponse = {
+      const chatHistory = updatedMessages.map(msg => ({
+        role: msg.sender === 'user' ? 'user' : 'assistant',
+        content: msg.text
+      }));
+
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/chat`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ messages: chatHistory })
+        });
+
+        const data = await response.json();
+
+        setIsLoading(false);
+        if (response.ok && data.choices && data.choices.length > 0) {
+          const aiResponseText = data.choices[0].message.content;
+          const aiResponse = {
+            id: Date.now() + 1,
+            text: aiResponseText,
+            sender: "support",
+            timestamp: new Date().toISOString()
+          };
+          setMessages((prev) => [...prev, aiResponse]);
+        } else {
+          throw new Error(data.message || 'Failed to get response');
+        }
+      } catch (error) {
+        console.error('Chat error:', error);
+        setIsLoading(false);
+        setMessages((prev) => [...prev, {
           id: Date.now() + 1,
-          text: "I'm just a frontend demo right now, but soon I'll be able to help you with your studies!",
+          text: "Sorry, I'm having trouble connecting right now. Please check the backend console if you haven't added an OpenRouter API key yet.",
           sender: "support",
           timestamp: new Date().toISOString(),
-        };
-        setMessages((prev) => [...prev, dummyResponse]);
-      }, 1000);
+        }]);
+      }
     }
   };
 
@@ -117,18 +162,26 @@ const ChatbotWidget = () => {
             <div
               key={msg.id}
               className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"
-                } animate-in slide-in-from-bottom-2 duration-300`}
+                } animate-in slide-in-from-bottom-2 duration-300 relative group/message`}
             >
               <div
                 className={`
-                  max-w-[80%] p-3.5 rounded-2xl text-sm relative shadow-sm
+                  max-w-[85%] p-3.5 rounded-2xl text-sm relative shadow-sm
                   ${msg.sender === "user"
                     ? "bg-primary text-white rounded-tr-none"
-                    : "bg-white text-slate-700 border border-slate-100 rounded-tl-none"
+                    : "bg-white text-slate-700 border border-slate-100 rounded-tl-none pr-8"
                   }
                 `}
               >
-                <p>{msg.text}</p>
+                {msg.sender === "user" ? (
+                  <p className="whitespace-pre-wrap">{msg.text}</p>
+                ) : (
+                  <div className="prose prose-sm prose-slate max-w-none prose-p:leading-snug prose-ul:my-1 prose-li:my-0 pb-1">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {msg.text}
+                    </ReactMarkdown>
+                  </div>
+                )}
                 <span
                   className={`text-[10px] mt-1 block w-full text-right ${msg.sender === "user" ? "text-blue-200" : "text-slate-400"
                     }`}
@@ -138,9 +191,34 @@ const ChatbotWidget = () => {
                     minute: "2-digit",
                   })}
                 </span>
+
+                {msg.sender === "support" && (
+                  <button
+                    onClick={() => handleCopy(msg.id, msg.text)}
+                    className="absolute top-2 right-2 p-1 text-slate-400 hover:text-primary opacity-0 group-hover/message:opacity-100 transition-opacity bg-slate-50 rounded-md border border-slate-200 shadow-sm"
+                    title="Copy message"
+                  >
+                    {copiedId === msg.id ? (
+                      <Check className="w-3.5 h-3.5 text-green-500" />
+                    ) : (
+                      <Copy className="w-3.5 h-3.5" />
+                    )}
+                  </button>
+                )}
               </div>
             </div>
           ))}
+          {isLoading && (
+            <div className="flex justify-start animate-in slide-in-from-bottom-2 duration-300">
+              <div className="max-w-[80%] p-3.5 rounded-2xl text-sm relative shadow-sm bg-white text-slate-700 border border-slate-100 rounded-tl-none flex items-center h-10 w-16 justify-center">
+                <div className="flex gap-1 items-center">
+                  <div className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></div>
+                  <div className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                  <div className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                </div>
+              </div>
+            </div>
+          )}
           <div ref={messagesEndRef} />
         </div>
 
@@ -165,10 +243,10 @@ const ChatbotWidget = () => {
             />
             <button
               type="submit"
-              disabled={!message.trim()}
+              disabled={!message.trim() || isLoading}
               className={`
                 p-2.5 rounded-full flex items-center justify-center transition-all duration-200
-                ${message.trim()
+                ${message.trim() && !isLoading
                   ? "bg-primary text-white shadow-md shadow-primary/20 hover:bg-primary-dark transform hover:scale-105 active:scale-95"
                   : "bg-slate-200 text-slate-400 cursor-not-allowed"
                 }
